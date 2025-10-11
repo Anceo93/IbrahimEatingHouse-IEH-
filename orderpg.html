@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Food</title>
+  <link rel="shortcut icon" href="./assets/images/Logo2.0.png" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  --> 
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Rubik:wght@400;500;600;700&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-banner.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./assets/images/hero-banner-bg.png" media="min-width(768px)">
+  <link rel="preload" as="image" href="./assets/images/hero-bg.jpg">
+
+  <style>
+    body {
+      font-family:'Roboto', sans-serif;
+      color: aliceblue;
+      background: url('./assets/images/hero-bg-2.jpg');
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .order-box {
+      background:transparent;
+      backdrop-filter: blur(20px);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgb(240, 238, 238);
+      width: 300px;
+    }
+
+    .order-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #ff9502;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 18px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #b33600;
+    }
+  </style>
+</head>
+<body>
+  <div class="order-box">
+    <h2>Order Food</h2>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" />
+    </div>
+    <div class="form-group">
+      <label for="number">Number:</label>
+      <input type="number" id="number" />
+    </div>
+    <div class="form-group">
+      <label for="item">Food Item:</label>
+      <input type="text" id="item" />
+    </div>
+    <button onclick="sendOrder()">Order</button>
+  </div>
+
+  <script>
+    function sendOrder() {
+      const name = document.getElementById("name").value;
+      const number = document.getElementById("number").value;
+      const item = document.getElementById("item").value;
+
+      if (!name || !item) {
+        alert("Please fill out your name and food item.");
+        return;
+      }
+
+      const message = `Food Order:%0AName: ${name}%0Anumber: ${number}%0AItem: ${item}`;
+      const useWhatsApp = confirm("Send via WhatsApp? Click Cancel to send by Email.");
+
+      if (useWhatsApp) {
+        const phoneNumber = "94773121315"; // Example: 94771234567 (without +)
+        window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+      } else {
+        window.location.href = `mailto:ibrahimeatinghousechinafort@gmail.com?subject=Food Order&body=${message}`;
+      }
+    }
+  </script>
+</body>
+</html>
